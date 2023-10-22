@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        /* Add basic table styling */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 1rem;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        /* Additional styling */
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .table-container {
+            margin: 0 auto;
+            width: 80%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: auto;
+        }
+    </style>
+    <title>Ticket report</title>
+</head>
+<body>
+<h1 th:text="${subject}">Ticket Report</h1>
+<div class="table-container">
+    <h2>Ticket</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Customer</th>
+            <th>Project</th>
+            <th>Ticket title</th>
+            <th>Description</th>
+            <th>Ticket status</th>
+            <th>Created by</th>
+            <th>Assigned to</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td th:text="${ticket.getProjectDTO().getCustomerDTO().getCompany()}">customer</td>
+            <td th:text="${ticket.getProjectDTO().getTitle()}">project</td>
+            <td th:text="${ticket.getTitle()}">title</td>
+            <td th:text="${ticket.getDescription()}">description</td>
+            <td th:text="${ticket.getTicketStatus()}">ticket status</td>
+            <td th:text="${ticket.getCreatedBy()}">createdBy</td>
+            <td th:text="${ticket.getAssignedUserId()}">assignedTo</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<br>
+<br>
+<br>
+<div class="table-container">
+    <h2>Activities</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Description</th>
+            <th>Driving activity</th>
+            <th>Activity status</th>
+            <th>Start time</th>
+            <th>End time</th>
+            <th>Total time</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${activityList.size() == 0}">
+            <td colspan="6" style="text-align:center;font-weight:bold;font-size:1.5rem;">No activity created</td>
+        </tr>
+        <tr th:each="activity : ${activityList}">
+            <td th:text="${activity.getDescription()}">description</td>
+            <td th:text="${activity.isDrivingActivity()}">drivingActivity</td>
+            <td th:text="${activity.getActivityStatus()}">activityStatus</td>
+            <td th:text="${activity.getStartTime()}">startTime</td>
+            <td th:text="${activity.getEndTime()}">endTime</td>
+            <td th:text="${activity.getTotalTime()}">totalTime</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<br>
+<br>
+<br>
+<div class="table-container">
+    <h2>Articles</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Activity</th>
+            <th>Article name</th>
+            <th>Article number</th>
+            <th>Article count</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${articleList.size() == 0}">
+            <td colspan="6" style="text-align:center;font-weight:bold;font-size:1.5rem;">No article created</td>
+        </tr>
+        <tr th:each="article : ${articleList}">
+            <td th:text="${article.getActivityDTO().getDescription()}">activity</td>
+            <td th:text="${article.getArticleName()}">article name</td>
+            <td th:text="${article.getArticleNumber()}">article number</td>
+            <td th:text="${article.getArticleCount()}">article count</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

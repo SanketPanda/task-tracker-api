@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        /* Add basic table styling */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 1rem;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        /* Additional styling */
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .table-container {
+            margin: 0 auto;
+            width: 80%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: auto;
+        }
+    </style>
+    <title>Ticket assigned to a technician</title>
+</head>
+<body>
+<h1>A ticket has been assigned to you in Timeapp, please check the details below</h1>
+<div class="table-container">
+    <h2>Ticket</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Customer</th>
+            <th>Project</th>
+            <th>Ticket title</th>
+            <th>Description</th>
+            <th>Ticket status</th>
+            <th>Created by</th>
+            <th>Assigned to</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td th:text="${ticket.getProjectDTO().getCustomerDTO().getCompany()}">customer</td>
+            <td th:text="${ticket.getProjectDTO().getTitle()}">project</td>
+            <td th:text="${ticket.getTitle()}">title</td>
+            <td th:text="${ticket.getDescription()}">description</td>
+            <td th:text="${ticket.getTicketStatus()}">ticket status</td>
+            <td th:text="${ticket.getCreatedBy()}">createdBy</td>
+            <td th:text="${ticket.getAssignedUserId()}">assignedTo</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

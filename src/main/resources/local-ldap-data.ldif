@@ -1,0 +1,25 @@
+dn: dc=task,dc=tracker
+objectclass: top
+objectclass: domain
+objectclass: extensibleObject
+dc: mcm
+
+dn: ou=task,dc=task,dc=tracker
+objectclass: top
+objectclass: organizationalUnit
+ou: mcm
+
+dn: ou=test,ou=task,dc=task,dc=tracker
+objectclass: top
+objectclass: organizationalUnit
+ou: test
+
+dn: uid=timeapp1,ou=test,ou=task,dc=task,dc=tracker
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: Task Tracker 1
+sn: Task
+uid: tasktracker1
+userPassword: Test1234@
